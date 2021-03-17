@@ -87,7 +87,7 @@ def night_duration(_from, _to, _start, _end, seclength=32):
         last_nstatus = nstatus
         last_nvec = nvec
         print(nvec, ",")
-    return round(night_acc)
+    return night_acc
 
 
 def test():
