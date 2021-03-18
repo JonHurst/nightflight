@@ -42,6 +42,11 @@ def night_p(nvec, dt):
     l = astral.LocationInfo("", "", "UTC", *to_latlong(nvec))
     try:
         sunrise, sunset = astral.sun.daylight(l.observer, dt.date())
+        #astral gives sunset on the day, and previous sunrise, so adjust if reqd
+        if sunrise.date() != dt.date():
+            sunrise = astral.sun.sunrise(
+                l.observer,
+                (dt + datetime.timedelta(days=1)).date())
         #replace with timezone naive versions
         sunrise = sunrise.replace(tzinfo=None)
         sunset = sunset.replace(tzinfo=None);
