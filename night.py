@@ -62,7 +62,7 @@ def night_p(nvec, dt):
         #summer in northern hemisphere, assume midday sun
         if nvec[2] > 0 and dt.month >=4 and dt.month <=8:
             return False
-        #and for summer in southern hemisphere southern hemisphere...
+        #and for summer in southern hemisphere southern...
         if nvec[2] < 0 and dt.month in (10, 11, 12 , 1, 2):
             return False
     return True
