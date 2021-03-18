@@ -6,6 +6,7 @@ import datetime
 
 import night
 from airport_nvecs import airfields
+from make_locations import to_nvec
 
 class Test_nvecs(unittest.TestCase):
 
@@ -109,3 +110,52 @@ class Test_night_predicate(unittest.TestCase):
             night.night_p(airfields["MEL"], datetime.datetime(2021, 3, 18, 9, 4)))
         self.assertTrue(
             night.night_p(airfields["MEL"], datetime.datetime(2021, 3, 18, 9, 6)))
+
+
+class Test_night_duration(unittest.TestCase):
+
+    def test_allnight(self):
+        self.assertEqual(
+            night.night_duration(airfields["FNC"],
+                                 airfields["BRS"],
+                                 datetime.datetime(2020, 12, 19, 21, 7),
+                                 (datetime.datetime(2020, 12, 19, 21, 7) +
+                                  datetime.timedelta(minutes=217))),
+            217)
+
+
+    def test_allday(self):
+        self.assertEqual(
+            night.night_duration(airfields["GVA"],
+                                 airfields["BRS"],
+                                 datetime.datetime(2020, 12, 20, 11, 6),
+                                 (datetime.datetime(2020, 12, 20, 11, 6) +
+                                  datetime.timedelta(minutes=105))),
+            0)
+
+
+    def split(self):
+        # Sunset at 48.1N 6.9W was at 16:39 according to timeanddate.com, so regulatory
+        # night was at 17:09 at this location. From google maps this location looks to
+        # be approximately at the quarter way point, so the calculated 165 minutes
+        # of night flying looks very reasonable.
+        self.assertEqual(
+            round(night.night_duration(airfields["BRS"],
+                                       airfields["FNC"],
+                                       datetime.datetime(2020, 12, 19, 16, 18),
+                                       (datetime.datetime(2020, 12, 19, 16, 18) +
+                                        datetime.timedelta(minutes=217)))),
+            165)
+
+
+    def polar(self):
+        #12 hour, 3600nm flight over the north pole on the winter solstice
+        #Arctic circle is ~66.5N, so 2820nm will be flown above the arctic circle
+        #so ~564 minutes will be night flying due no sunrise/sunset
+        _from = to_nvec(60, 0)
+        _to = to_nvec(60, 180)
+        duration = night.night_duration(_from,
+                                        _to,
+                                       datetime.datetime(2020, 12, 21, 12, 0),
+                                       datetime.datetime(2020, 12, 22, 0, 0))
+        self.assertEqual(round(duration), 570)
