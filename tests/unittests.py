@@ -4,9 +4,9 @@ import unittest
 import math
 import datetime
 
-import night
-from airport_nvecs import airfields
-from make_locations import to_nvec
+import nightflight.night
+from nightflight.airport_nvecs import airfields
+from nightflight.make_locations import to_nvec
 
 class Test_nvecs(unittest.TestCase):
 

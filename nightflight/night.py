@@ -6,7 +6,7 @@ import datetime
 import astral
 import astral.sun
 
-from airport_nvecs import airfields
+from nightflight.airport_nvecs import airfields
 
 
 def recursive_bisect(nvec1, nvec2, depth):
