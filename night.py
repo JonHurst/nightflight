@@ -91,28 +91,4 @@ def night_duration(_from, _to, _start, _end, seclength=32):
             night_acc += time_d_mins
         last_nstatus = nstatus
         last_nvec = nvec
-        print(nvec, ",")
     return night_acc
-
-
-def test():
-    _from = airfields["BSL"]
-    _to = airfields["BRS"]
-    _start = datetime.datetime(2020, 12, 20, 15, 31)
-    _end = _start + datetime.timedelta(minutes=116)
-    duration = night_duration(_from, _to, _start, _end)
-    print("BSL-BRS:", duration)
-    print("KTT-BRS:", night_duration(airfields["KTT"],
-                                     airfields["BRS"],
-                                     datetime.datetime(2019, 12, 21, 11, 59),
-                                     datetime.datetime(2019, 12, 21, 15, 21)))
-    print("polar", night_duration((0,0,1), (0,0,-1),
-                                  datetime.datetime(2019, 12, 1, 11, 59),
-                                  datetime.datetime(2019, 12, 2, 11, 59)))
-    print("equitorial", night_duration((1,0,0), (-1,0,0),
-                                  datetime.datetime(2019, 12, 1, 11, 59),
-                                  datetime.datetime(2019, 12, 2, 11, 59)))
-
-
-if __name__ == "__main__":
-    test()
