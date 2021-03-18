@@ -71,7 +71,7 @@ def night_p(nvec, dt):
 def night_duration(_from, _to, _start, _end, seclength=32):
     flight_duration = (_end - _start).total_seconds() / 60
     min_sections = flight_duration / seclength
-    depth = math.ceil(math.log(min_sections) / math.log(2)) - 1
+    depth = max(math.ceil(math.log(min_sections) / math.log(2)) - 1, 0)
     nvecs = recursive_bisect(_from, _to, depth)
     time_d = (_end - _start) / (len(nvecs) - 1)
     time_d_mins = time_d.total_seconds() / 60
