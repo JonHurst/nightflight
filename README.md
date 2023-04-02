@@ -1,8 +1,8 @@
 # nightflight
 
 This is a very small library that leverages the astral package to calculate how
-much of a flight occurs during regulatory night time (30 minutes before sunset to
-30 minutes after sunrise).
+much of a flight occurs during regulatory night time (30 minutes after sunset to
+30 minutes before sunrise).
 
 This calculation is somewhat complicated because sunset and sunrise are a
 function of location, and location is changing rapidly during a flight.
