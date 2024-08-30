@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="nightflight",
-    version="0.2",
+    version="0.9.1",
     author="Jon Hurst",
     author_email="jon.a@hursts.org.uk",
     description="Calculate night flying hours",
@@ -16,10 +16,11 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=['astral>=2.2'],
     classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    package_data={"nightflight": ["airports.txt.bz2"]},
+    python_requires='>=3.11',
 )
