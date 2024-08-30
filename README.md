@@ -24,7 +24,7 @@ different from that assumed.
 The main function takes n_vectors (vectors normal to the tangent plane at a
 given location) as arguments to avoid dealing with singularities. A database of
 n_vectors for airfields as designated by their three letter IATA code or four
-letter ICAO codes is is included. This data is a processed version of the
+letter ICAO codes is included. This data is a processed version of the
 database generously provided by ourairports.com (see
 <https://ourairports.com/>). The `make_locations` module has a `to_nvec`
 function to convert an arbitrary latitude and longitude to an n_vector .
